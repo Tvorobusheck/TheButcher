@@ -1,3 +1,2 @@
 # TheButcher
-RPG
-Artur
+Isometric RPG, where you can be glorious warrior, wise mage or accuarate shooter
