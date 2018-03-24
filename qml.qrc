@@ -1,5 +1,13 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>fon.jpg</file>
+        <file>fon1.jpg</file>
+        <file>Menu.qml</file>
+        <file>Author.qml</file>
+        <file>TheButcher_logics.qml</file>
+        <file>Button.qml</file>
+        <file>GamePlay.qml</file>
+        <file>Settings.qml</file>
     </qresource>
 </RCC>
