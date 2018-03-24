@@ -1,6 +1,8 @@
 
-QT += quick
+#QT += quick
+QT  += core gui svg xml qml quick quickwidgets sql
 CONFIG += c++11
+
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
