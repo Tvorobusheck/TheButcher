@@ -3,7 +3,7 @@ import QtQuick 2.0
 Rectangle {
     width: 200
     height: 40
-    color: "blue"
+    color: "grey"
 
     radius: 10
 
@@ -20,8 +20,8 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
-        onPressed: parent.color = "red"
-        onReleased: parent.color = "blue"
+        onPressed: parent.color = "grey"
+        onReleased: parent.color = "red"
         onClicked: parent.clicked()
     }
 }

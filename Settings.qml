@@ -9,6 +9,8 @@ Rectangle {
        signal gameStopped
 
     property int speed: settings.speed
+   // property int x: settings.x
+   // property int y: settings.y
 
 
     ColumnLayout {
@@ -32,7 +34,7 @@ Rectangle {
     }
     Button {
             anchors.centerIn: parent
-            text: "скоро подвезут настройки "
+            text: "Вернуться в Меню"
            onClicked: parent.gameStopped()
         }
 
@@ -40,12 +42,18 @@ Rectangle {
     Settings {
         id: settings
         property int speed: 3
+        property int x: 0
+        property int y: 0
     }
     Component.onDestruction: {
         settings.speed = speed
+        settings.x = 0
+        settings.y = 0
     }
 
     onSpeedChanged: {
         input.number = speed
+        settings.x = 0
+        settings.y = 0
     }
 }
