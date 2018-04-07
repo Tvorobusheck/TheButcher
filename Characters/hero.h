@@ -7,38 +7,37 @@
 class Hero: public Character
 {
 public:
-    struct Skill
-    {
-        Experience* exp;
-        Skill() {
-            exp = new Experience(100, 25);
-        }
-    };
-    Hero(unsigned int amountOfMaxHealth);
-
-    Experience* getExp();
-    void setExp(Experience* expArgument);
-
-    Skill getGunSkill();
-    Skill getMageSkill();
-    Skill getMeleeSkill();
+    Hero(unsigned int amountOfMaxHealth, unsigned int maxLevel);
+    unsigned int getLevel();
+    unsigned int getExp();
+    unsigned int getGunSkillLevel();
+    unsigned int getMageSkillLevel();
+    unsigned int getMeleeSkillLevel();
+    unsigned int getGunSkillExp();
+    unsigned int getMageSkillExp();
+    unsigned int getMeleeSkillExp();
 
     unsigned int getGold();
-    void setGold(unsigned int amountOfGold);
     /* This function changes  gold negatively and positively
         returns false and do nothing if balance is negative
         returns true if balance is non-negative and change it
     */
     bool takeGold(int amountOfGold);
+    void takeGunSkillExp(unsigned int amountOfExp);
+    void takeMageSkillExp(unsigned int amountOfExp);
+    void takeMeleeSkillExp(unsigned int amountOfExp);
+
 
     unsigned int getAmountOfPotions();
     unsigned int getPotionsCoefficient();
-    void setAmountOfPotions(unsigned int amountOfPotions);
-    void setPotionsCoefficient(unsigned int valueOfPotionsCoefficient);
     void addAmountOfPotions(unsigned int amountOfPotions);
     void consumePotion();
-
+    void takeExp(unsigned int amountOfExp);
 private:
+    struct Skill
+    {
+        Experience* exp;
+    };
     Experience* exp;
     Skill gunSkill;
     Skill mageSkill;
@@ -46,6 +45,17 @@ private:
     unsigned int gold;
     unsigned int numberOfPotions;
     static unsigned int potionsCoefficient;
+
+    void setGold(unsigned int amountOfGold);
+
+    void setAmountOfPotions(unsigned int amountOfPotions);
+    void setPotionsCoefficient(unsigned int valueOfPotionsCoefficient);
+
+    void setExp(Experience* expArgument);
+
+    unsigned int getSkillExp(Skill skill);
+    unsigned int getSkillLevel(Skill skill);
+    void takeSkillExp(Skill skill, unsigned int amountOfExp);
 };
 
 #endif // HERO_H

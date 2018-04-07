@@ -2,18 +2,21 @@
 
 unsigned int Hero::potionsCoefficient;
 
-Hero::Hero(unsigned int amountOfMaxHealth){
+Hero::Hero(unsigned int amountOfMaxHealth, unsigned int maxLevel){
     setMaxHealth(amountOfMaxHealth);
     setCurHealth(amountOfMaxHealth);
-    setWeapon(new Weapon(0, Weapon::TypeOfWeapon::None));
-    setExp(new Experience(100, 25, 0, 0));
+    setWeapon(new Weapon(0, Weapon::TypeOfWeapon::Melee));
+    setExp(new Experience(maxLevel, 100, 25));
     setGold(0);
     setAmountOfPotions(0);
+    gunSkill.exp = new Experience(100, 100, 0);
+    mageSkill.exp = new Experience(100, 100, 0);
+    meleeSkill.exp = new Experience(100, 100, 0);
 }
 
 
-Experience* Hero::getExp(){
-    return exp;
+unsigned int Hero::getExp(){
+    return exp -> getExp();
 }
 
 void Hero::setExp(Experience* expArgument){
@@ -25,14 +28,33 @@ unsigned int Hero::getGold(){
     return gold;
 }
 
-Hero::Skill Hero::getGunSkill(){
-    return gunSkill;
+unsigned int Hero::getGunSkillExp(){
+    return getSkillExp(gunSkill);
 }
-Hero::Skill Hero::getMageSkill(){
-    return mageSkill;
+unsigned int Hero::getMageSkillExp(){
+    return getSkillExp(mageSkill);
 }
-Hero::Skill Hero::getMeleeSkill(){
-    return meleeSkill;
+unsigned int Hero::getMeleeSkillExp(){
+    return getSkillExp(meleeSkill);
+}
+unsigned int Hero::getGunSkillLevel(){
+    return getSkillLevel(gunSkill);
+}
+unsigned int Hero::getMageSkillLevel(){
+    return getSkillLevel(mageSkill);
+}
+unsigned int Hero::getMeleeSkillLevel(){
+    return getSkillLevel(meleeSkill);
+}
+
+void Hero::takeGunSkillExp(unsigned int amountOfExp){
+    takeSkillExp(gunSkill, amountOfExp);
+}
+void Hero::takeMageSkillExp(unsigned int amountOfExp){
+    takeSkillExp(mageSkill, amountOfExp);
+}
+void Hero::takeMeleeSkillExp(unsigned int amountOfExp){
+    takeSkillExp(meleeSkill, amountOfExp);
 }
 void Hero::setGold(unsigned int amountOfGold){
     gold = amountOfGold;
@@ -74,4 +96,14 @@ void Hero::consumePotion(){
     if(getAmountOfPotions() > 0)
         setAmountOfPotions(getAmountOfPotions() - 1);
     takeHealth(getMaxHealth() * getPotionsCoefficient() / 100.0);
+}
+unsigned int Hero::getSkillExp(Hero::Skill skill){
+    return skill.exp -> getExp();
+}
+
+unsigned int Hero::getSkillLevel(Hero::Skill skill){
+    return skill.exp -> getCurrentLevel();
+}
+void Hero::takeSkillExp(Hero::Skill skill, unsigned int amountOfExp){
+    skill.exp -> takeExp(amountOfExp);
 }

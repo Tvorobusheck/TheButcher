@@ -5,19 +5,20 @@
 class Experience
 {
 public:
-    Experience(unsigned int valueOfThreshold, unsigned int valueOfThresholdCoefficient,
+    Experience(unsigned int valueOfMaxLevel, unsigned int valueOfThreshold, unsigned int valueOfThresholdCoefficient,
                unsigned int amountOfExp = 0, unsigned int amountOfLevels = 0);
 
     unsigned int getExp();
-    unsigned int getLevel();
+    unsigned int getCurrentLevel();
     unsigned int getThreshold();
     unsigned int getThresholdCoefficient();
+    unsigned int getMaxLevel();
 
     void setExp(unsigned int amountOfExp);
-    void setLevel(unsigned int amountOfLevel);
-
+    void setCurrentLevel(unsigned int amountOfLevel);
     /* Set exp threshold which aiming causes levelup */
     void setThresholdExp(unsigned int border);
+    void setMaxLevel(unsigned int valueOfMaxLevel);
     void setThresholdCoefficient(unsigned int valueOfCoefficient);
     /* Adding one level */
     void incLevel();
@@ -30,7 +31,8 @@ private:
     unsigned int thresholdCoefficient;
     /* Expirience */
     unsigned int exp;
-    unsigned int level;
+    unsigned int currentLevel;
+    unsigned int maxLevel;
 };
 
 #endif // EXPERIENCE_H

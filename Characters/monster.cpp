@@ -1,22 +1,11 @@
 #include "monster.h"
 
-Monster::Monster(unsigned int amountOfMaxHealth, unsigned int weaponDamage,
-                 Weapon::TypeOfWeapon weaponType,
-                 unsigned int dropExp, unsigned int dropGold)
-{
-    setMaxHealth(amountOfMaxHealth);
-    setCurHealth((signed)amountOfMaxHealth);
-    setWeapon(new Weapon(weaponDamage, weaponType));
-    setExpDrop(dropExp);
-    setGoldDrop(dropGold);
-}
-
-Monster::Monster(unsigned int amountOfMaxHealth, int amountOfCurHealth,
+Monster::Monster(unsigned int amountOfMaxHealth,
                  unsigned int weaponDamage, Weapon::TypeOfWeapon weaponType,
                  unsigned int dropExp, unsigned int dropGold)
 {
     setMaxHealth(amountOfMaxHealth);
-    setCurHealth(amountOfCurHealth);
+    setCurHealth(amountOfMaxHealth);
     setWeapon(new Weapon(weaponDamage, weaponType));
     setExpDrop(dropExp);
     setGoldDrop(dropGold);

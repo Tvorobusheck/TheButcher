@@ -10,10 +10,6 @@ public:
         int getCurHealth();
         unsigned int getMaxHealth();
         unsigned int getDamage();
-        /*Setting*/
-        void setCurHealth(int amountOfCurHealth);
-        void setMaxHealth(unsigned int amountOfMaxHealth);
-        void setWeapon(Weapon* weapon);
 
 
         /* Character gets damage and health */
@@ -21,7 +17,7 @@ public:
         /* Returns true, when character is alive
          * Returns false, when character is dead
          */
-        bool takeDamage(unsigned int amountOfDamage);
+        virtual bool takeDamage(unsigned int amountOfDamage);
         void takeHealth(unsigned int amountOfHeal);
 
         /*Character has died */
@@ -31,6 +27,12 @@ private:
         /* Current health */
         int curHealth;
         Weapon* weapon;
+protected:
+        /*Setting*/
+        void setCurHealth(int amountOfCurHealth);
+        void setMaxHealth(unsigned int amountOfMaxHealth);
+        void setWeapon(Weapon* weapon);
+
 };
 
 #endif // CHARACTER_H

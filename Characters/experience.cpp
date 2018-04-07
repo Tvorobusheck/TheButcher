@@ -1,10 +1,11 @@
 #include "experience.h"
 
-Experience::Experience(unsigned int valueOfThreshold, unsigned int valueOfThresholdCoefficient,
+Experience::Experience(unsigned int valueOfMaxLevel, unsigned int valueOfThreshold, unsigned int valueOfThresholdCoefficient,
            unsigned int amountOfLevels, unsigned int amountOfExp){
+    setMaxLevel(valueOfMaxLevel);
     setThresholdExp(valueOfThreshold);
     setThresholdCoefficient(valueOfThresholdCoefficient);
-    setLevel(amountOfLevels);
+    setCurrentLevel(amountOfLevels);
     setExp(amountOfExp);
 }
 
@@ -12,11 +13,14 @@ Experience::Experience(unsigned int valueOfThreshold, unsigned int valueOfThresh
 unsigned int Experience::getExp(){
     return exp;
 }
-unsigned int Experience::getLevel(){
-    return level;
+unsigned int Experience::getCurrentLevel(){
+    return currentLevel;
 }
 unsigned int Experience::getThreshold(){
     return thresholdExp;
+}
+unsigned int Experience::getMaxLevel(){
+    return maxLevel;
 }
 unsigned int Experience::getThresholdCoefficient(){
     return thresholdCoefficient;
@@ -26,20 +30,24 @@ void Experience::setExp(unsigned int amountOfExp){
     while(exp >= getThreshold())
         incLevel();
 }
-void Experience::setLevel(unsigned int amountOfLevels){
-    level = 0;
+void Experience::setCurrentLevel(unsigned int amountOfLevels){
+    currentLevel = 0;
     for(unsigned int i = 0; i < amountOfLevels; i++)
         incLevel();
 }
-
+void Experience::setMaxLevel(unsigned int valueOfMaxLevel){
+    maxLevel = valueOfMaxLevel;
+}
 /* Set exp threshold for all heroes */
 void Experience::setThresholdExp(unsigned int border){
     thresholdExp = border;
 }
 /* Adding one level */
 void Experience::incLevel(){
-    level++;
-    incThresholdExp();
+    if(getCurrentLevel() <= getMaxLevel()){
+        currentLevel++;
+        incThresholdExp();
+    }
 }
 void Experience::incThresholdExp(){
     setThresholdExp(getThreshold() * (getThresholdCoefficient() / 100.0));

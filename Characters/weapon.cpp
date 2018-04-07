@@ -1,7 +1,7 @@
 #include "weapon.h"
 
 /* Creating Weapon class object */
-Weapon::Weapon(unsigned int amountOfDamage, TypeOfWeapon typeOfWeapon){
+Weapon::Weapon(unsigned int amountOfDamage, Weapon::TypeOfWeapon typeOfWeapon){
     setDamage(amountOfDamage);
     setType(typeOfWeapon);
 }
