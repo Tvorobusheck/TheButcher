@@ -18,7 +18,9 @@ Hero::Hero(unsigned int amountOfMaxHealth, unsigned int maxLevel){
 unsigned int Hero::getExp(){
     return exp -> getExp();
 }
-
+unsigned int Hero::getLevel(){
+    return exp -> getCurrentLevel();
+}
 void Hero::setExp(Experience* expArgument){
     exp = expArgument;
 }
@@ -47,6 +49,21 @@ unsigned int Hero::getMeleeSkillLevel(){
     return getSkillLevel(meleeSkill);
 }
 
+unsigned int Hero::getHeroicDamage(){
+    unsigned int amountOfDamage = getDamage();
+    switch (getWeaponType()) {
+    case Weapon::Gun:
+        amountOfDamage = 1.0 * amountOfDamage * (1.0 + 1.0 * getGunSkillLevel() / 100);
+        break;
+    case Weapon::Mage:
+        amountOfDamage = 1.0 * amountOfDamage * (1.0 + 1.0 * getMageSkillLevel() / 100);
+        break;
+    case Weapon::Melee:
+        amountOfDamage = 1.0 * amountOfDamage * (1.0 + 1.0 * getMeleeSkillLevel() / 100);
+        break;
+    }
+    return amountOfDamage;
+}
 void Hero::takeGunSkillExp(unsigned int amountOfExp){
     takeSkillExp(gunSkill, amountOfExp);
 }
@@ -106,4 +123,7 @@ unsigned int Hero::getSkillLevel(Hero::Skill skill){
 }
 void Hero::takeSkillExp(Hero::Skill skill, unsigned int amountOfExp){
     skill.exp -> takeExp(amountOfExp);
+}
+void Hero::giveNewWeapon(Weapon* newWeapon){
+    setWeapon(newWeapon);
 }

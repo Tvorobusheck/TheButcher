@@ -40,7 +40,9 @@ void Character::takeHealth(unsigned int amountOfHealth){
     if((unsigned)getCurHealth() > getMaxHealth())
         setCurHealth(getMaxHealth());
 }
-
+Weapon::TypeOfWeapon Character::getWeaponType(){
+    return weapon -> getWeaponType();
+}
 void Character::killCharacter(){
     delete [] this;
 }

@@ -19,7 +19,8 @@ SOURCES += main.cpp \
     Characters/weapon.cpp \
     Characters/monster.cpp \
     Characters/hero.cpp \
-    Characters/experience.cpp
+    Characters/experience.cpp \
+    Characters/trader.cpp
 
 RESOURCES += qml.qrc
 
@@ -37,7 +38,8 @@ HEADERS += \
     Characters/weapon.h \
     Characters/monster.h \
     Characters/hero.h \
-    Characters/experience.h
+    Characters/experience.h \
+    Characters/trader.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

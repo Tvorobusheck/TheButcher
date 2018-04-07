@@ -21,7 +21,7 @@ public:
         void takeHealth(unsigned int amountOfHeal);
 
         /*Character has died */
-        virtual void killCharacter();
+        void killCharacter();
 private:
         unsigned int maxHealth;
         /* Current health */
@@ -32,7 +32,7 @@ protected:
         void setCurHealth(int amountOfCurHealth);
         void setMaxHealth(unsigned int amountOfMaxHealth);
         void setWeapon(Weapon* weapon);
-
+        Weapon::TypeOfWeapon getWeaponType();
 };
 
 #endif // CHARACTER_H

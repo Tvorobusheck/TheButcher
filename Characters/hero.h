@@ -27,12 +27,17 @@ public:
     void takeMageSkillExp(unsigned int amountOfExp);
     void takeMeleeSkillExp(unsigned int amountOfExp);
 
+    /*
+     * return damage, which raised by skills
+     */
+    unsigned int getHeroicDamage();
 
     unsigned int getAmountOfPotions();
     unsigned int getPotionsCoefficient();
     void addAmountOfPotions(unsigned int amountOfPotions);
     void consumePotion();
     void takeExp(unsigned int amountOfExp);
+    void giveNewWeapon(Weapon* newWeapon);
 private:
     struct Skill
     {
