@@ -127,3 +127,11 @@ void Hero::takeSkillExp(Hero::Skill skill, unsigned int amountOfExp){
 void Hero::giveNewWeapon(Weapon* newWeapon){
     setWeapon(newWeapon);
 }
+void Hero::takeExp(unsigned int amountOfExp){
+    unsigned int baseLevel = exp -> getCurrentLevel();
+    exp -> takeExp(amountOfExp);
+    for(unsigned int i = baseLevel; i < exp -> getCurrentLevel(); i++){
+       setMaxHealth(getMaxHealth() * 1.25);
+       setCurHealth(getMaxHealth());
+    }
+}

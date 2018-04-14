@@ -20,7 +20,12 @@ SOURCES += main.cpp \
     Characters/monster.cpp \
     Characters/hero.cpp \
     Characters/experience.cpp \
-    Characters/trader.cpp
+    Characters/trader.cpp \
+    Level/mapobject.cpp \
+    Level/heroobject.cpp \
+    Level/traderobject.cpp \
+    Level/monsterobject.cpp \
+    Level/level.cpp
 
 RESOURCES += qml.qrc
 
@@ -39,7 +44,12 @@ HEADERS += \
     Characters/monster.h \
     Characters/hero.h \
     Characters/experience.h \
-    Characters/trader.h
+    Characters/trader.h \
+    Level/mapobject.h \
+    Level/heroobject.h \
+    Level/traderobject.h \
+    Level/monsterobject.h \
+    Level/level.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
