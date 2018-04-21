@@ -9,5 +9,13 @@
         <file>Button.qml</file>
         <file>GamePlay.qml</file>
         <file>Settings.qml</file>
+        <file>hero.jpg</file>
+        <file>fon_for_menu.png</file>
+        <file>123466.jpg</file>
+        <file>map.jpg</file>
+        <file>1.mp3</file>
+        <file>2.mp3</file>
+        <file>aft.jpg</file>
+        <file>Actor.qml</file>
     </qresource>
 </RCC>

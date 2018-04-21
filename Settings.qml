@@ -5,12 +5,27 @@ import Qt.labs.settings 1.0
 Rectangle {
     width: 800
     height: 600
+    id: win_set
 
        signal gameStopped
 
-    property int speed: settings.speed
-   // property int x: settings.x
-   // property int y: settings.y
+
+    property int hero_x: settings.hero_x
+    property int hero_y: settings.hero_y
+    property int mod_speed:4
+
+
+    Settings {
+        id: settings
+        property int mod_speed: 4
+        property int hero_x: 400
+        property int hero_y: 300
+    }
+    Component.onDestruction: {
+        settings.mod_speed = 4
+        settings.hero_x = 400
+        settings.hero_y = 300
+    }
 
 
     ColumnLayout {
@@ -18,42 +33,26 @@ Rectangle {
         anchors.verticalCenterOffset: parent.height / 4
         spacing: 5
         Text{
-        text:qsTr("Rounds to win:")
+        text:qsTr("Текущии настройки")
         }
 
-        TextInput {
-            id: input
-            text: options.speed
-            //text: qsTr("Rounds to win:")
-            onTextChanged: {
-                options.speed = number
+        Text{
+        text:qsTr("Модификатор скорости:" + mod_speed)
+        }
+        Button {
+
+
+                text: "Вернуться в Меню"
+               onClicked: win_set.gameStopped()
             }
-        }
+
 
 
     }
-    Button {
-            anchors.centerIn: parent
-            text: "Вернуться в Меню"
-           onClicked: parent.gameStopped()
-        }
 
 
-    Settings {
-        id: settings
-        property int speed: 3
-        property int x: 0
-        property int y: 0
-    }
-    Component.onDestruction: {
-        settings.speed = speed
-        settings.x = 0
-        settings.y = 0
-    }
 
-    onSpeedChanged: {
-        input.number = speed
-        settings.x = 0
-        settings.y = 0
-    }
 }
+
+
+

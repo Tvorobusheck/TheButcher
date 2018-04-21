@@ -1,7 +1,7 @@
 import QtQuick 2.0
 //import QmlProject 1.1
 Rectangle {
-    width: 200
+    width: 250
     height: 40
     color: "grey"
 
@@ -21,7 +21,7 @@ Rectangle {
     MouseArea {
         anchors.fill: parent
         onPressed: parent.color = "grey"
-        onReleased: parent.color = "red"
+        //onReleased: parent.color = "red"
         onClicked: parent.clicked()
     }
 }

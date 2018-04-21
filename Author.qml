@@ -6,12 +6,13 @@ import QtQuick.Layouts 1.0
 Rectangle {
     width: 800
     height: 600
+    id:aftor
 
     signal gameStopped
 
     Image{
         id:fon
-        source:"fon1.jpg"
+        source:"aft.jpg"
         anchors.centerIn: parent
         width:800
         height:600
@@ -48,12 +49,17 @@ Rectangle {
             font.pointSize:15
             color:"#b9f0d3"
         }
+        Button {
 
+
+                text: "Вернуться в Меню"
+               onClicked: aftor.gameStopped()
+            }
 
 
     }
 
-    Button {
+   /* Button {
         anchors.left:parent.left
         anchors.top: parent.top
         anchors.leftMargin: parent.width/2
@@ -62,7 +68,7 @@ Rectangle {
 
         text: "Вернуться в меню"
         onClicked: parent.gameStopped()
-    }
+    }*/
     Keys.onPressed: {
         if (event.isAutoRepeat) {
             return;

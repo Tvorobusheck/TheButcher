@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.0
+import QtMultimedia 5.5
 
 Rectangle {
     id: menu
@@ -12,7 +13,7 @@ Rectangle {
 
     Image {
         id: back
-        source: "fon1.jpg"
+        source: "fon_for_menu.png"
         width: 800
         height: 600
     }
@@ -22,7 +23,11 @@ Rectangle {
         spacing: 5
         Button {
             text: "Начать игру"
-            onClicked: menu.gameStarted()
+            onClicked:{
+                menu_audio.stop()
+                  game_audio.play()
+                menu.gameStarted()
+        }
         }
         Button {
             text: "Настройки"
@@ -35,8 +40,27 @@ Rectangle {
         Button {
             text: "Выход"
             onClicked: {
+
                 Qt.quit()
             }
         }
     }
+
+    Audio {
+        id:menu_audio
+        source: "1.mp3"
+        volume:1
+        loops: SoundEffect.Infinite
+         autoPlay: true
+    }
+    Audio {
+        id:game_audio
+        source: "2.mp3"
+        volume:1
+        loops: SoundEffect.Infinite
+    }
+
+
+
+
 }
