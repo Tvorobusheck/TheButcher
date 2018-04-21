@@ -16,7 +16,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    Characters/weapon.cpp \
+    Characters/monster.cpp \
+    Characters/hero.cpp \
+    Characters/experience.cpp \
+    Characters/trader.cpp \
+    Level/mapobject.cpp \
+    Level/heroobject.cpp \
+    Level/traderobject.cpp \
+    Level/monsterobject.cpp \
+    Level/level.cpp
 
 RESOURCES += qml.qrc
 
@@ -25,6 +35,22 @@ QML_IMPORT_PATH =
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
+
+SOURCES += \
+    Characters/character.cpp
+
+HEADERS += \
+    Characters/character.h \
+    Characters/weapon.h \
+    Characters/monster.h \
+    Characters/hero.h \
+    Characters/experience.h \
+    Characters/trader.h \
+    Level/mapobject.h \
+    Level/heroobject.h \
+    Level/traderobject.h \
+    Level/monsterobject.h \
+    Level/level.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
