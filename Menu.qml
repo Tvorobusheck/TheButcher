@@ -13,7 +13,7 @@ Rectangle {
 
     Image {
         id: back
-        source: "fon_for_menu.png"
+        source: "Image/fon_for_menu.png"
         width: 800
         height: 600
     }
@@ -48,14 +48,14 @@ Rectangle {
 
     Audio {
         id:menu_audio
-        source: "1.mp3"
+        source: "Sounds/1.mp3"
         volume:1
         loops: SoundEffect.Infinite
          autoPlay: true
     }
     Audio {
         id:game_audio
-        source: "2.mp3"
+        source: "Sounds/2.mp3"
         volume:1
         loops: SoundEffect.Infinite
     }

@@ -12,7 +12,7 @@ Rectangle {
 
     Image{
         id:fon
-        source:"aft.jpg"
+        source:"Image/aft.jpg"
         anchors.centerIn: parent
         width:800
         height:600

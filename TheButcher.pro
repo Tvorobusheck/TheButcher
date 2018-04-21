@@ -56,3 +56,15 @@ HEADERS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    Sounds/1.mp3 \
+    Sounds/2.mp3 \
+    Image/123466.jpg \
+    Image/aft.jpg \
+    Image/fon.jpg \
+    Image/fon1.jpg \
+    Image/hero.jpg \
+    Image/map.jpg \
+    Image/fon_for_menu.png \
+    Image/hero_spr.png
