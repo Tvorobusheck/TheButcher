@@ -43,7 +43,9 @@ Level::Point Level::getPos(MapObject* character){
     return Point{character->getPosX(), character->getPosY()};
 }
 void Level::takeMove(MapObject* character, Level::Point vectorCoordinates){
-    character->takeMovement(vectorCoordinates.x, vectorCoordinates.y);
+    if(vectorCoordinates.x > leftUpBorder.x && vectorCoordinates.x < rightDownBorder.x &&
+            vectorCoordinates.y > rightDownBorder.y && vectorCoordinates.y < leftUpBorder.y)
+        character->takeMovement(vectorCoordinates.x, vectorCoordinates.y);
 }
 
 int Level::getAmountOfMonsters(){
