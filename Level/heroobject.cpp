@@ -9,6 +9,3 @@ HeroObject::HeroObject(int valX, int valY,
 Hero* HeroObject::getHeroState(){
     return heroState;
 }
-Level::HeroObject* Level::getMainHeroObject(){
-
-}
