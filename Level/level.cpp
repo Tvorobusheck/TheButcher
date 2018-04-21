@@ -210,3 +210,7 @@ list <MonsterObject*> Level::getListOfNonAttackingMonsters(){
                 nonAttackingMonsters.push_back(it);
     return nonAttackingMonsters;
 }
+
+HeroObject* Level::getMainHeroObject(){
+    return mainHero;
+}
