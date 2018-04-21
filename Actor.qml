@@ -4,13 +4,26 @@ Item {
 id:hero_game
 property int xVelocity: 0
 property int yVelocity: 0
+
+Image {
+     id: back
+     source: "Image/map.jpg"
+     width: 3070
+     height: 1890
+
+     anchors.left:parent.left
+     anchors.top: parent.top
+     anchors.leftMargin: fon_x
+     anchors.topMargin:fon_y
+
+ }
 Image{
 
 id:hero
-source: "hero.jpg"
+source: "Image/hero.jpg"
 width: 40
 height: 40
-
+ focus:true
 
 anchors.left:parent.left
 anchors.top: parent.top
@@ -64,3 +77,4 @@ anchors.topMargin:hero_y
         }
     }
 }
+
