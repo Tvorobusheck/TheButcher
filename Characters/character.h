@@ -10,6 +10,7 @@ public:
         int getCurHealth();
         unsigned int getMaxHealth();
         unsigned int getDamage();
+        Weapon::TypeOfWeapon getWeaponType();
 
 
         /* Character gets damage and health */
@@ -32,7 +33,6 @@ protected:
         void setCurHealth(int amountOfCurHealth);
         void setMaxHealth(unsigned int amountOfMaxHealth);
         void setWeapon(Weapon* weapon);
-        Weapon::TypeOfWeapon getWeaponType();
 };
 
 #endif // CHARACTER_H

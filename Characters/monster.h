@@ -13,7 +13,6 @@ public:
     unsigned int getGoldDrop();
     unsigned int getExpDrop();
 
-    void killCharacter();
 private:
     /* Expirience drop */
     unsigned int expDrop;

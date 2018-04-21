@@ -25,6 +25,3 @@ unsigned int Monster::getGoldDrop(){
     return goldDrop;
 }
 
-void Monster::killCharacter(){
-    delete [] this;
-}

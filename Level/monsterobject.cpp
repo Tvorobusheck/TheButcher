@@ -8,3 +8,6 @@ MonsterObject::MonsterObject(int valX, int valY,
     setPos(valX, valY);
     monster = new Monster(amountOfMaxHealth, amountOfDamage, typeOfWeapon, amountOfDropExp, amountOfDropGold);
 }
+Monster* MonsterObject::getMonsterState(){
+    return monster;
+}

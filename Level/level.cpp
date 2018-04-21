@@ -38,6 +38,117 @@ void Level::addMonster(int x,  int y,
     monsters.push_back(new MonsterObject(x, y, amountOfMaxHealth, weaponDamage,
                                          weaponLibType, dropExpAmount, dropGoldAmount));
 }
+
+Level::Point Level::getPos(MapObject* character){
+    return Point{character->getPosX(), character->getPosY()};
+}
+void Level::takeMove(MapObject* character, Level::Point vectorCoordinates){
+    character->takeMovement(vectorCoordinates.x, vectorCoordinates.y);
+}
+
 int Level::getAmountOfMonsters(){
     return monsters.size();
+}
+bool Level::heroPayAbilityToBuyWeapon(){
+    return trader -> getTrader() -> abilityToPayWeapon(mainHero -> getHeroState());
+}
+bool Level::heroPayAbilityToBuyOnePotion(){
+    return trader -> getTrader() -> abilityToPayPotion(mainHero -> getHeroState());
+}
+
+void Level::heroBuysPotion(){
+    return trader -> getTrader() -> heroBuysPotion(mainHero -> getHeroState());
+}
+void Level::heroBuysNewWeapon(WeaponTypes weaponType){
+    Weapon::TypeOfWeapon weaponLibType;
+    switch (weaponType) {
+    case Gun:
+        weaponLibType = Weapon::TypeOfWeapon::Gun;
+        break;
+    case Mage:
+        weaponLibType = Weapon::TypeOfWeapon::Mage;
+        break;
+    case Melee:
+        weaponLibType = Weapon::TypeOfWeapon::Melee;
+        break;
+    }
+    trader -> getTrader() -> heroBuysWeapon(mainHero -> getHeroState(), weaponLibType);
+}
+
+unsigned int Level::getHeroLevel(){
+    return mainHero -> getHeroState() -> getLevel();
+}
+unsigned int Level::getHeroExp(){
+    return mainHero -> getHeroState() -> getExp();
+}
+
+unsigned int Level::getHeroGunLevel(){
+    return mainHero -> getHeroState() -> getGunSkillLevel();
+}
+unsigned int Level::getHeroGunExp(){
+    return mainHero -> getHeroState() -> getGunSkillExp();
+}
+unsigned int Level::getHeroMageLevel(){
+    return mainHero -> getHeroState() -> getMageSkillLevel();
+}
+unsigned int Level::getHeroMageExp(){
+    return mainHero -> getHeroState() -> getMageSkillExp();
+}
+unsigned int Level::getHeroMeleeLevel(){
+    return mainHero -> getHeroState() -> getMeleeSkillLevel();
+}
+unsigned int Level::getHeroMeleeExp(){
+    return mainHero -> getHeroState() -> getMeleeSkillExp();
+}
+unsigned int Level::getHeroBaseDamage(){
+    return mainHero -> getHeroState() -> getDamage();
+}
+unsigned int Level::getHeroRaisedDamage(){
+    return mainHero -> getHeroState() -> getHeroicDamage();
+}
+
+bool Level::heroAtacksMonster(MonsterObject* monster){
+    switch (mainHero -> getHeroState() -> getWeaponType()) {
+    case Weapon::TypeOfWeapon::Gun:
+        mainHero -> getHeroState() -> takeGunSkillExp(1);
+        break;
+    case Weapon::TypeOfWeapon::Mage:
+        mainHero -> getHeroState() -> takeMageSkillExp(1);
+        break;
+    case Weapon::TypeOfWeapon::Melee:
+        mainHero -> getHeroState() -> takeMeleeSkillExp(1);
+        break;
+    }
+    if(monster -> getMonsterState() -> takeDamage(getHeroRaisedDamage())){
+        heroGetsMonsterDrop(monster);
+        return true;
+    }
+    else
+        return false;
+}
+bool Level::monsterAttaksHero(MonsterObject* monster){
+    return mainHero -> getHeroState() -> takeDamage(monster -> getMonsterState() -> getDamage());
+}
+void Level::heroGetsMonsterDrop(MonsterObject* monster){
+    mainHero -> getHeroState() -> takeGold(monster -> getMonsterState() -> getGoldDrop());
+    mainHero -> getHeroState() -> takeExp(monster -> getMonsterState() -> getExpDrop());
+}
+
+void Level::heroDrinksPotion(){
+    mainHero -> getHeroState() -> consumePotion();
+}
+unsigned int Level::getHeroAmountOfPotions(){
+    return mainHero -> getHeroState() -> getAmountOfPotions();
+}
+
+Level::WeaponTypes Level::getCurrentWeaponType(){switch (mainHero -> getHeroState() -> getWeaponType()) {
+    case Weapon::TypeOfWeapon::Gun:
+        return WeaponTypes::Gun;
+        break;
+    case Weapon::TypeOfWeapon::Mage:
+        return WeaponTypes::Mage;
+        break;
+    default:
+        return WeaponTypes::Melee;
+    }
 }
