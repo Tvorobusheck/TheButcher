@@ -11,3 +11,9 @@ MonsterObject::MonsterObject(int valX, int valY,
 Monster* MonsterObject::getMonsterState(){
     return monster;
 }
+void MonsterObject::setCombatState(bool inCombat){
+    attacksHero = inCombat;
+}
+bool MonsterObject::isAttacks(){
+    return attacksHero;
+}

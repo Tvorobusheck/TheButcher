@@ -19,7 +19,7 @@ void Level::setRightDownBorder(int x, int y){
     rightDownBorder.x = x;
     rightDownBorder.y = y;
 }
-void Level::addMonster(int x,  int y,
+MonsterObject* Level::addMonster(int x,  int y,
                        unsigned int amountOfMaxHealth,
                        unsigned int weaponDamage, WeaponTypes typeOfWeapon,
                        unsigned int dropExpAmount, unsigned int dropGoldAmount){
@@ -35,8 +35,10 @@ void Level::addMonster(int x,  int y,
         weaponLibType = Weapon::TypeOfWeapon::Melee;
         break;
     }
-    monsters.push_back(new MonsterObject(x, y, amountOfMaxHealth, weaponDamage,
-                                         weaponLibType, dropExpAmount, dropGoldAmount));
+    MonsterObject* newMonster = new MonsterObject(x, y, amountOfMaxHealth, weaponDamage,
+                                                 weaponLibType, dropExpAmount, dropGoldAmount);
+    monsters.push_back(newMonster);
+    return newMonster;
 }
 
 Level::Point Level::getPos(MapObject* character){
@@ -153,4 +155,58 @@ Level::WeaponTypes Level::getCurrentWeaponType(){switch (mainHero -> getHeroStat
     default:
         return WeaponTypes::Melee;
     }
+}
+void Level::killMonster(MonsterObject *monster){
+    monsters.remove(monster);
+}
+
+void Level::checkArea(unsigned int radius){
+    for(auto it: monsters)
+        if(1ull * (it -> getPosX() - mainHero -> getPosX())* (it -> getPosX() - mainHero -> getPosX()) +
+                1ull*(it -> getPosY() - mainHero -> getPosY())* (it -> getPosY() - mainHero -> getPosY()) <= radius * radius)
+           it -> setCombatState(true);
+    else
+           it -> setCombatState(false);
+}
+int Level::signum(int val){
+    if(val > 0)
+        return 1;
+    else if(val == 0)
+        return 0;
+    else
+        return -1;
+
+}
+
+void Level::combatMonstersAtackHero(unsigned int dist){
+    for(auto it: monsters)
+        if(it -> isAttacks()){
+            if(1ull * (it -> getPosX() - mainHero -> getPosX())* (it -> getPosX() - mainHero -> getPosX()) +
+                    1ull*(it -> getPosY() - mainHero -> getPosY())* (it -> getPosY() - mainHero -> getPosY()) <= dist * dist)
+                monsterAttaksHero(it);
+            else{
+                int dirX = mainHero -> getPosX() - it -> getPosX();
+                int dirY = mainHero -> getPosY() - it -> getPosY();
+                takeMove(it, {dirX = signum(dirX),
+                             dirY = signum(dirY)});
+            }
+        }
+}
+
+list <MonsterObject*> Level::getListOfMonsters(){
+    return monsters;
+}
+list <MonsterObject*> Level::getListOfAttackingMonsters(){
+    list <MonsterObject*> attackingMonsters;
+    for(auto it: monsters)
+        if(it -> isAttacks())
+            attackingMonsters.push_back(it);
+    return attackingMonsters;
+}
+list <MonsterObject*> Level::getListOfNonAttackingMonsters(){
+    list <MonsterObject*> nonAttackingMonsters;
+        for(auto it: monsters)
+            if(it -> isAttacks())
+                nonAttackingMonsters.push_back(it);
+    return nonAttackingMonsters;
 }

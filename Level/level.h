@@ -21,11 +21,15 @@ public:
           int heroX, int heroY,
           unsigned int heroMaxHealth, unsigned int heroMaxLevel,
           int traderX, int traderY);
-    void addMonster(int x,  int y,
+    MonsterObject* addMonster(int x,  int y,
                     unsigned int amountOfMaxHealth,
                     unsigned int weaponDamage, WeaponTypes typeOfWeapon,
                     unsigned int dropExpAmount, unsigned int dropGoldAmount);
 
+    list <MonsterObject*> getListOfMonsters();
+    list <MonsterObject*> getListOfAttackingMonsters();
+    list <MonsterObject*> getListOfNonAttackingMonsters();
+    HeroObject* getMainHeroObject();
     Point getPos(MapObject* character);
     void takeMove(MapObject* character, Point vectorCoordinates);
     int getAmountOfMonsters();
@@ -68,8 +72,17 @@ public:
     void heroDrinksPotion();
     unsigned int getHeroAmountOfPotions();
 
+    void killMonster(MonsterObject* monster);
     WeaponTypes getCurrentWeaponType();
+
+    /*!
+     * \brief Find monsters near hero in given radius
+     */
+    void checkArea(unsigned int radius);
+
+    void combatMonstersAtackHero(unsigned int dist);
 private:
+    int signum(int val);
     void heroGetsMonsterDrop(MonsterObject* monster);
     Point leftUpBorder, rightDownBorder;
     HeroObject* mainHero;
