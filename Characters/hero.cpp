@@ -12,6 +12,7 @@ Hero::Hero(unsigned int amountOfMaxHealth, unsigned int maxLevel){
     gunSkill.exp = new Experience(100, 100, 0);
     mageSkill.exp = new Experience(100, 100, 0);
     meleeSkill.exp = new Experience(100, 100, 0);
+    setPotionsCoefficient(POTION_COEFFICIENT);
 }
 
 

@@ -53,10 +53,10 @@ void Level::takeMove(MapObject* character, Level::Point vectorCoordinates){
 int Level::getAmountOfMonsters(){
     return monsters.size();
 }
-bool Level::heroPayAbilityToBuyWeapon(){
+bool Level::heroAbilityToBuyWeapon(){
     return trader -> getTrader() -> abilityToPayWeapon(mainHero -> getHeroState());
 }
-bool Level::heroPayAbilityToBuyOnePotion(){
+bool Level::heroAbilityToBuyOnePotion(){
     return trader -> getTrader() -> abilityToPayPotion(mainHero -> getHeroState());
 }
 

@@ -1,6 +1,6 @@
 #ifndef HERO_H
 #define HERO_H
-
+#define POTION_COEFFICIENT 30
 #include "character.h"
 #include "experience.h"
 
