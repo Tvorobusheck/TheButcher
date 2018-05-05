@@ -44,9 +44,14 @@ MonsterObject* Level::addMonster(int x,  int y,
 Level::Point Level::getPos(MapObject* character){
     return Point{character->getPosX(), character->getPosY()};
 }
+int Level::getHeroHealth(){
+    return getMainHeroObject() -> getHeroState() -> getCurHealth();
+}
+int Level::getHeroMaxHealth(){
+    return getMainHeroObject() -> getHeroState() -> getMaxHealth();
+}
 void Level::takeMove(MapObject* character, Level::Point vectorCoordinates){
-    if(vectorCoordinates.x > leftUpBorder.x && vectorCoordinates.x < rightDownBorder.x &&
-            vectorCoordinates.y > rightDownBorder.y && vectorCoordinates.y < leftUpBorder.y)
+    if(checkBorder(vectorCoordinates + getPos(character)))
         character->takeMovement(vectorCoordinates.x, vectorCoordinates.y);
 }
 
@@ -79,6 +84,26 @@ void Level::heroBuysNewWeapon(WeaponTypes weaponType){
     trader -> getTrader() -> heroBuysWeapon(mainHero -> getHeroState(), weaponLibType);
 }
 
+Level::WeaponTypes Level::getMonsterWeaponType(MonsterObject* monster){
+    switch (monster-> getMonsterState() -> getWeaponType()) {
+    case Weapon::Gun:
+        return Gun;
+    case Weapon::Mage:
+        return Mage;
+    default:
+        return Melee;
+    }
+}
+Level::WeaponTypes Level::getHeroWeaponType(){
+    switch (mainHero -> getHeroState() -> getWeaponType()) {
+    case Weapon::Gun:
+        return Gun;
+    case Weapon::Mage:
+        return Mage;
+    default:
+        return Melee;
+    }
+}
 unsigned int Level::getHeroLevel(){
     return mainHero -> getHeroState() -> getLevel();
 }
@@ -111,7 +136,7 @@ unsigned int Level::getHeroRaisedDamage(){
     return mainHero -> getHeroState() -> getHeroicDamage();
 }
 
-bool Level::heroAtacksMonster(MonsterObject* monster){
+void Level::heroAtacksMonster(Point vectorCoordinates){
     switch (mainHero -> getHeroState() -> getWeaponType()) {
     case Weapon::TypeOfWeapon::Gun:
         mainHero -> getHeroState() -> takeGunSkillExp(1);
@@ -123,15 +148,20 @@ bool Level::heroAtacksMonster(MonsterObject* monster){
         mainHero -> getHeroState() -> takeMeleeSkillExp(1);
         break;
     }
-    if(monster -> getMonsterState() -> takeDamage(getHeroRaisedDamage())){
-        heroGetsMonsterDrop(monster);
-        return true;
+    for(auto monster: monsters){
+        if(getHeroWeaponType() == Melee &&
+                getPos(getMainHeroObject()) - getPos(monster) <= vectorCoordinates)
+            if(monster -> getMonsterState() -> takeDamage(getHeroRaisedDamage()))
+                heroGetsMonsterDrop(monster);
     }
-    else
-        return false;
+    if(getHeroWeaponType() == Gun || getHeroWeaponType() == Mage)
+         addShot(new Shot(this, vectorCoordinates));
 }
-bool Level::monsterAttaksHero(MonsterObject* monster){
-    return mainHero -> getHeroState() -> takeDamage(monster -> getMonsterState() -> getDamage());
+void Level::monsterAttaksHero(MonsterObject* monster){
+    if(getMonsterWeaponType(monster))
+        mainHero -> getHeroState() -> takeDamage(monster -> getMonsterState() -> getDamage());
+    else
+        shots.push_back(new Shot(this, monster));
 }
 void Level::heroGetsMonsterDrop(MonsterObject* monster){
     mainHero -> getHeroState() -> takeGold(monster -> getMonsterState() -> getGoldDrop());
@@ -177,22 +207,49 @@ int Level::signum(int val){
         return -1;
 
 }
+double Level::signum(double val){
+    if(val > 0)
+        return 1;
+    else if(val == 0)
+        return 0;
+    else
+        return -1;
 
-void Level::combatMonstersAtackHero(unsigned int dist){
+}
+
+void Level::combatMonstersAtackHero(){
     for(auto it: monsters)
         if(it -> isAttacks()){
-            if(1ull * (it -> getPosX() - mainHero -> getPosX())* (it -> getPosX() - mainHero -> getPosX()) +
-                    1ull*(it -> getPosY() - mainHero -> getPosY())* (it -> getPosY() - mainHero -> getPosY()) <= dist * dist)
-                monsterAttaksHero(it);
-            else{
-                int dirX = mainHero -> getPosX() - it -> getPosX();
-                int dirY = mainHero -> getPosY() - it -> getPosY();
-                takeMove(it, {dirX = signum(dirX),
-                             dirY = signum(dirY)});
+            if(it -> getMonsterState() -> getWeaponType() == Weapon::TypeOfWeapon::Melee){
+                if(1ull * (it -> getPosX() - mainHero -> getPosX())* (it -> getPosX() - mainHero -> getPosX()) +
+                        1ull*(it -> getPosY() - mainHero -> getPosY())* (it -> getPosY() - mainHero -> getPosY()) <= MELEE_RADIUS * MELEE_RADIUS)
+                    monsterAttaksHero(it);
+                else{
+                    int dirX = mainHero -> getPosX() - it -> getPosX();
+                    int dirY = mainHero -> getPosY() - it -> getPosY();
+                    takeMove(it, {dirX = signum(dirX),
+                                 dirY = signum(dirY)});
+                }
             }
+            else{
+                if(1ull * (it -> getPosX() - mainHero -> getPosX())* (it -> getPosX() - mainHero -> getPosX()) +
+                        1ull*(it -> getPosY() - mainHero -> getPosY())* (it -> getPosY() - mainHero -> getPosY())
+                        <= DISTANCE_WEAPON_RADIUS * DISTANCE_WEAPON_RADIUS)
+                    addShot(new Shot(this, it));
+                else{
+                    int dirX = mainHero -> getPosX() - it -> getPosX();
+                    int dirY = mainHero -> getPosY() - it -> getPosY();
+                    takeMove(it, {dirX = signum(dirX),
+                                 dirY = signum(dirY)});
+                }
+            }
+
         }
 }
 
+list <Level::Shot*> Level::getListOfShots(){
+    return shots;
+}
 list <MonsterObject*> Level::getListOfMonsters(){
     return monsters;
 }
@@ -213,4 +270,49 @@ list <MonsterObject*> Level::getListOfNonAttackingMonsters(){
 
 HeroObject* Level::getMainHeroObject(){
     return mainHero;
+}
+void Level::addShot(Shot *shot){
+    shots.push_back(shot);
+}
+void Level::takeShots(){
+    for(auto it: shots) {
+        if(it -> getOwner() == Shot::Owner::Monster){
+            if(it -> checkColision(getPos(getMainHeroObject()))){
+                getMainHeroObject() -> getHeroState() -> takeDamage(it -> getDamage());
+                shots.remove(it);
+                delete [] it;
+            }
+            else
+                it -> takeMove(this);
+        }
+        else{
+            for(auto curMonster: monsters){
+                if(it -> checkColision(getPos(curMonster))){
+                    if(curMonster -> getMonsterState() -> takeDamage(it -> getDamage()))
+                        heroGetsMonsterDrop(curMonster);
+                    shots.remove(it);
+                    delete [] it;
+                    break;
+                }
+                else
+                    it -> takeMove(this);
+            }
+        }
+        if(checkBorder(it -> getPos())){
+            shots.remove(it);
+            delete [] it;
+        }
+    }
+}
+
+bool Level::checkBorder(Point pos){
+    return pos.x >= leftUpBorder.x && pos.x <= rightDownBorder.x &&
+            pos.y >= rightDownBorder.y && pos.y <= leftUpBorder.y;
+}
+
+unsigned int Level::getHeroGold(){
+    return getMainHeroObject() -> getHeroState() -> getGold();
+}
+void Level::takeHeroGold(unsigned int amountOfGold){
+    getMainHeroObject() -> getHeroState() -> takeGold(amountOfGold);
 }
