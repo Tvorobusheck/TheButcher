@@ -316,3 +316,13 @@ unsigned int Level::getHeroGold(){
 void Level::takeHeroGold(unsigned int amountOfGold){
     getMainHeroObject() -> getHeroState() -> takeGold(amountOfGold);
 }
+
+void Level::playGame(unsigned int time, unsigned int shotTime, unsigned int monsterTime){
+    if(time % monsterTime == 0){
+        checkArea(SIGHT_RADIUS);
+        combatMonstersAtackHero();
+    }
+    if(time % shotTime == 0){
+        takeShots();
+    }
+}

@@ -318,6 +318,14 @@ public:
      * else move the shot on orthogonal vector
      */
     void takeShots();
+    /*!
+     * \brief playGame take all actions which aren't controlled by user
+     * \param current time
+     * \param time % shotTime == 0 then shots move
+     * \param time % monsterTime == 0 then monster reacts
+     */
+    void playGame(unsigned int time, unsigned int shotTime, unsigned int monsterTime);
+
 private:
     static double signum(double val);
     static int signum(int val);
