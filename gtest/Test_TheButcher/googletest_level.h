@@ -122,6 +122,36 @@ TEST(TheButcherCaseHeroMelee, TheButcherSet_CheckMeleeExp)
          SUCCEED();
 }
 
+TEST(TheButcherCaseHeroRaised, TheButcherSet_CheckRaisedDamage)
+{
+    Level *a = new Level{1,1,1,1,1,1,1,1,1,1};
+   int hl =a->getHeroRaisedDamage();
+   // cout << hl << endl;
+    if (hl != 0)
+         FAIL();
+    else
+         SUCCEED();
+}
 
 
+TEST(TheButcherCasePotion, TheButcherSet_CheckBuyAndUse)
+{
+    Level *a = new Level{1,1,1,1,1,1,1,1,1,1};
+   if(a->getHeroAmountOfPotions()!=0)
+         FAIL();
+    else
+         SUCCEED();
+   a->heroBuysPotion();
 
+   if(a->getHeroAmountOfPotions()!=1)
+         FAIL();
+    else
+         SUCCEED();
+   a->heroDrinksPotion();
+
+
+   if(a->getHeroAmountOfPotions()!=0)
+         FAIL();
+    else
+         SUCCEED();
+}

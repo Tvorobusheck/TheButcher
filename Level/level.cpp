@@ -1,5 +1,6 @@
 #include "level.h"
-
+#include <math.h>
+using namespace std;
 Level::Level(int borderXLeftUp, int borderYLeftUp,
              int borderXRightDown, int borderYRightDown,
              int heroX, int heroY,

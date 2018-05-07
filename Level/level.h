@@ -153,7 +153,7 @@ public:
          * \return true if in epsilon radius
          */
         bool checkColision(Point pos){
-            return abs(A * pos.x + B * pos.y + C) <= EPSILON && abs(pos.x - x) <= EPSILON && abs(pos.y - y) <= EPSILON;
+            return true;//abs(A * pos.x + B * pos.y + C) <= EPSILON && abs(pos.x - x) <= EPSILON && abs(pos.y - y) <= EPSILON;
         }
     private:
         Level* lev;
