@@ -8,7 +8,7 @@
 #include "../Characters/trader.h"
 #include <list>
 #include <math.h>
-#define EPSILON 0,05
+#define EPSILON 0.05
 #define MELEE_RADIUS 2
 #define DISTANCE_WEAPON_RADIUS 10
 #define SIGHT_RADIUS 20
@@ -153,7 +153,8 @@ public:
          * \return true if in epsilon radius
          */
         bool checkColision(Point pos){
-            return abs(A * pos.x + B * pos.y + C) <= EPSILON && abs(pos.x - x) <= EPSILON && abs(pos.y - y) <= EPSILON;
+            return (fabs(A * pos.x + B * pos.y + C) <= EPSILON &&
+                    fabs(pos.x - x) <= EPSILON && fabs(pos.y - y) <= EPSILON);
         }
     private:
         Level* lev;
