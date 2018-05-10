@@ -178,8 +178,8 @@ public:
      * \param traderX trader position
      * \param traderY trader position
      */
-    Level(int borderXLeftUp, int borderYLeftUp,
-          int borderXRightDown, int borderYRightDown,
+    Level(int leftBorder, int upperBorder,
+          int rightBorder, int lowerBorder,
           int heroX, int heroY,
           unsigned int heroMaxHealth, unsigned int heroMaxLevel,
           int traderX, int traderY);
@@ -331,13 +331,12 @@ private:
     static double signum(double val);
     static int signum(int val);
     void heroGetsMonsterDrop(MonsterObject* monster);
-    Point leftUpBorder, rightDownBorder;
+    int leftBorder, upperBorder,
+    rightBorder, lowerBorder;
     HeroObject* mainHero;
     TraderObject* trader;
     list <MonsterObject*> monsters;
     list <Shot*> shots;
-    void setLeftUpBorder(int x, int y);
-    void setRightDownBorder(int x, int y);
 
     /*!
      * \brief add shot
