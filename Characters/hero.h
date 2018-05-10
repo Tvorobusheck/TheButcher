@@ -4,6 +4,13 @@
 #include "character.h"
 #include "experience.h"
 
+#define LEVELUP_HEALTH_INCOME 1.25
+#define HERO_ORIGIN_EXP_THRESHOLD 100
+#define HERO_MAX_LEVEL 25
+#define SKILL_MAX_LEVEL 100
+#define SKILL_EXP_THRESHOLD 100
+#define SKILL_FIRST_LEVEL 0
+
 class Hero: public Character
 {
 public:

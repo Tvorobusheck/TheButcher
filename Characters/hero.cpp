@@ -6,12 +6,12 @@ Hero::Hero(unsigned int amountOfMaxHealth, unsigned int maxLevel){
     setMaxHealth(amountOfMaxHealth);
     setCurHealth(amountOfMaxHealth);
     setWeapon(new Weapon(0, Weapon::TypeOfWeapon::Melee));
-    setExp(new Experience(maxLevel, 100, 25));
+    setExp(new Experience(maxLevel, HERO_ORIGIN_EXP_THRESHOLD, HERO_MAX_LEVEL));
     setGold(0);
     setAmountOfPotions(0);
-    gunSkill.exp = new Experience(100, 100, 0);
-    mageSkill.exp = new Experience(100, 100, 0);
-    meleeSkill.exp = new Experience(100, 100, 0);
+    gunSkill.exp = new Experience(SKILL_MAX_LEVEL, SKILL_EXP_THRESHOLD, SKILL_FIRST_LEVEL);
+    mageSkill.exp = new Experience(SKILL_MAX_LEVEL, SKILL_EXP_THRESHOLD, SKILL_FIRST_LEVEL);
+    meleeSkill.exp = new Experience(SKILL_MAX_LEVEL, SKILL_EXP_THRESHOLD, SKILL_FIRST_LEVEL);
     setPotionsCoefficient(POTION_COEFFICIENT);
 }
 
@@ -132,7 +132,7 @@ void Hero::takeExp(unsigned int amountOfExp){
     unsigned int baseLevel = exp -> getCurrentLevel();
     exp -> takeExp(amountOfExp);
     for(unsigned int i = baseLevel; i < exp -> getCurrentLevel(); i++){
-       setMaxHealth(getMaxHealth() * 1.25);
+       setMaxHealth(getMaxHealth() * LEVELUP_HEALTH_INCOME);
        setCurHealth(getMaxHealth());
     }
 }
