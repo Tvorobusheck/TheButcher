@@ -1,6 +1,7 @@
 #include "experience.h"
+#include <assert.h>
 
-Experience::Experience(unsigned int valueOfMaxLevel, unsigned int valueOfThreshold, unsigned int valueOfThresholdCoefficient,
+Experience::Experience(unsigned int valueOfMaxLevel, unsigned int valueOfThreshold, double valueOfThresholdCoefficient,
            unsigned int amountOfLevels, unsigned int amountOfExp){
     setMaxLevel(valueOfMaxLevel);
     setThresholdExp(valueOfThreshold);
@@ -22,7 +23,7 @@ unsigned int Experience::getThreshold(){
 unsigned int Experience::getMaxLevel(){
     return maxLevel;
 }
-unsigned int Experience::getThresholdCoefficient(){
+double Experience::getThresholdCoefficient(){
     return thresholdCoefficient;
 }
 void Experience::setExp(unsigned int amountOfExp){
@@ -44,15 +45,16 @@ void Experience::setThresholdExp(unsigned int border){
 }
 /* Adding one level */
 void Experience::incLevel(){
-    if(getCurrentLevel() <= getMaxLevel()){
+    if(getCurrentLevel() < getMaxLevel()){
         currentLevel++;
         incThresholdExp();
     }
 }
 void Experience::incThresholdExp(){
-    setThresholdExp(getThreshold() * (getThresholdCoefficient() / 100.0));
+    setExp(0);
+    setThresholdExp(getThreshold() * getThresholdCoefficient());
 }
-void Experience::setThresholdCoefficient(unsigned int valueOfCoefficient){
+void Experience::setThresholdCoefficient(double valueOfCoefficient){
     thresholdCoefficient = valueOfCoefficient;
 }
 /* This function add exp to hero */

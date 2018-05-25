@@ -18,7 +18,8 @@ HEADERS +=     tst_thebutchercase.h \
     ../../Level/mapobject.h \
     ../../Level/monsterobject.h \
     ../../Level/traderobject.h \
-    googletest_level.h
+    googletest_level.h \
+    googletest_experience.h
 
 SOURCES +=     main.cpp \
     ../../Characters/character.cpp \
