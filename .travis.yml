@@ -4,8 +4,7 @@ language:
 before_install:
   - pip install --user cpp-coveralls
 install:
-  - sudo apt-get update
-  - sudo apt-get install qt5-tools qt5-qmake libqt5-dev
+  - sudo apt-get install qt5-base
 script:
   - qmake
   - make
