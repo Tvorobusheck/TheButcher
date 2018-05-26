@@ -1,9 +1,10 @@
 language:
   - cpp
-  
+sudo: required
 before_install:
   - pip install --user cpp-coveralls
-  - pip install --user qt5-base
+install:
+ - sudo apt-get install qt58base qt58svg qt58charts-no-lgpl qt58xmlpatterns
 script:
   - qmake
   - make
