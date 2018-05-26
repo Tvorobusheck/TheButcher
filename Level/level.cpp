@@ -1,19 +1,6 @@
 #include "level.h"
 #include <math.h>
 using namespace std;
-void Level::Level_opt(int leftBorderVal, int upperBorderVal,
-             int rightBorderVal, int lowerBorderVal,
-             int heroX, int heroY,
-             unsigned int heroMaxHealth, unsigned int heroMaxLevel,
-             int traderX, int traderY)
-{
-    leftBorder = leftBorderVal;
-    upperBorder = upperBorderVal;
-    rightBorder = rightBorderVal;
-    lowerBorder = lowerBorderVal;
-    mainHero = new HeroObject(heroX, heroY, heroMaxHealth, heroMaxLevel);
-    trader = new TraderObject(traderX, traderY);
-}
 Level::Level(int leftBorderVal, int upperBorderVal,
              int rightBorderVal, int lowerBorderVal,
              int heroX, int heroY,
@@ -27,6 +14,7 @@ Level::Level(int leftBorderVal, int upperBorderVal,
     mainHero = new HeroObject(heroX, heroY, heroMaxHealth, heroMaxLevel);
     trader = new TraderObject(traderX, traderY);
 }
+
 MonsterObject* Level::addMonster(int x,  int y,
                        unsigned int amountOfMaxHealth,
                        unsigned int weaponDamage, WeaponTypes typeOfWeapon,

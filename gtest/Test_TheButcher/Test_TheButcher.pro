@@ -4,7 +4,7 @@ TEMPLATE = app
 CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG += thread
-CONFIG += qt
+CONFIG -= qt
 
 HEADERS +=     tst_thebutchercase.h \
     ../../Characters/character.h \
