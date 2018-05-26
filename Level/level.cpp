@@ -1,25 +1,33 @@
 #include "level.h"
 #include <math.h>
 using namespace std;
-Level::Level(int borderXLeftUp, int borderYLeftUp,
-             int borderXRightDown, int borderYRightDown,
+Level::Level_opt(int leftBorderVal, int upperBorderVal,
+             int rightBorderVal, int lowerBorderVal,
              int heroX, int heroY,
              unsigned int heroMaxHealth, unsigned int heroMaxLevel,
              int traderX, int traderY)
 {
-    setLeftUpBorder(borderXLeftUp, borderYLeftUp);
-    setRightDownBorder(borderXRightDown, borderYRightDown);
+    leftBorder = leftBorderVal;
+    upperBorder = upperBorderVal;
+    rightBorder = rightBorderVal;
+    lowerBorder = lowerBorderVal;
     mainHero = new HeroObject(heroX, heroY, heroMaxHealth, heroMaxLevel);
     trader = new TraderObject(traderX, traderY);
 }
-void Level::setLeftUpBorder(int x, int y){
-    leftUpBorder.x = x;
-    leftUpBorder.y = y;
+Level::Level(int leftBorderVal, int upperBorderVal,
+             int rightBorderVal, int lowerBorderVal,
+             int heroX, int heroY,
+             unsigned int heroMaxHealth, unsigned int heroMaxLevel,
+             int traderX, int traderY)
+{
+    leftBorder = leftBorderVal;
+    upperBorder = upperBorderVal;
+    rightBorder = rightBorderVal;
+    lowerBorder = lowerBorderVal;
+    mainHero = new HeroObject(heroX, heroY, heroMaxHealth, heroMaxLevel);
+    trader = new TraderObject(traderX, traderY);
 }
-void Level::setRightDownBorder(int x, int y){
-    rightDownBorder.x = x;
-    rightDownBorder.y = y;
-}
+
 MonsterObject* Level::addMonster(int x,  int y,
                        unsigned int amountOfMaxHealth,
                        unsigned int weaponDamage, WeaponTypes typeOfWeapon,
@@ -307,8 +315,8 @@ void Level::takeShots(){
 }
 
 bool Level::checkBorder(Point pos){
-    return pos.x >= leftUpBorder.x && pos.x <= rightDownBorder.x &&
-            pos.y >= rightDownBorder.y && pos.y <= leftUpBorder.y;
+    return pos.x >= leftBorder && pos.x <= rightBorder &&
+            pos.y >= lowerBorder && pos.y <= upperBorder;
 }
 
 unsigned int Level::getHeroGold(){

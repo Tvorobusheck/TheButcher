@@ -3,6 +3,8 @@
 #include "character.h"
 #include "hero.h"
 
+#define POTION_DIVISIONER 3
+
 class Trader: public Character
 {
 public:

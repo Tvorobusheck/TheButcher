@@ -21,7 +21,7 @@ bool Trader::abilityToPayWeapon(Hero *hero){
         return false;
 }
 bool Trader::abilityToPayPotion(Hero *hero){
-    if(hero -> getGold() >= hero -> getLevel() * goldCoeficient / 3)
+    if(hero -> getGold() >= hero -> getLevel() * goldCoeficient / POTION_DIVISIONER)
         return true;
     else
         return false;
@@ -36,6 +36,6 @@ Weapon* Trader::heroBuysWeapon(Hero *hero, Weapon::TypeOfWeapon type){
 }
 
 void Trader::heroBuysPotion(Hero *hero){
-    hero -> takeGold(-hero -> getLevel() * goldCoeficient / 3);
+    hero -> takeGold(-hero -> getLevel() * goldCoeficient / POTION_DIVISIONER);
     hero -> addAmountOfPotions(1);
 }

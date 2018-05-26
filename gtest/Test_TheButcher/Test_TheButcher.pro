@@ -4,7 +4,7 @@ TEMPLATE = app
 CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG += thread
-CONFIG -= qt
+CONFIG += qt
 
 HEADERS +=     tst_thebutchercase.h \
     ../../Characters/character.h \
@@ -18,7 +18,8 @@ HEADERS +=     tst_thebutchercase.h \
     ../../Level/mapobject.h \
     ../../Level/monsterobject.h \
     ../../Level/traderobject.h \
-    googletest_level.h
+    googletest_level.h \
+    googletest_experience.h
 
 SOURCES +=     main.cpp \
     ../../Characters/character.cpp \
