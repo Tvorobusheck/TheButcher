@@ -1,7 +1,7 @@
 #include "level.h"
 #include <math.h>
 using namespace std;
-Level::Level_opt(int leftBorderVal, int upperBorderVal,
+void Level::Level_opt(int leftBorderVal, int upperBorderVal,
              int rightBorderVal, int lowerBorderVal,
              int heroX, int heroY,
              unsigned int heroMaxHealth, unsigned int heroMaxLevel,

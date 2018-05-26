@@ -189,7 +189,7 @@ public:
      * \param traderY trader position
      */
 
-    Level_opt(int leftBorder, int upperBorder,
+    void Level_opt(int leftBorder, int upperBorder,
           int rightBorder, int lowerBorder,
           int heroX, int heroY,
           unsigned int heroMaxHealth, unsigned int heroMaxLevel,
