@@ -7,7 +7,7 @@ before_install:
 script:
   - qmake
   - make
-  - Test_TheButcher/./Test_TheButcher
+  - ./Test_TheButcher/Test_TheButcher
 
 after_success:
   - coveralls --root -E ".*external.*" -E ".*tests.*"
