@@ -1,12 +1,13 @@
 language:
   - cpp
-sudo: required
 before_install:
   - pip install --user cpp-coveralls
-install:
- - sudo apt-get install qt58base qt58svg qt58charts-no-lgpl qt58xmlpatterns
+  - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev
 script:
-  - qmake
+  - qmake -qt=qt5 -v
+  - qmake -qt=qt5
   - make
   - ./Test_TheButcher/Test_TheButcher
 
