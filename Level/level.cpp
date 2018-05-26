@@ -27,7 +27,6 @@ Level::Level(int leftBorderVal, int upperBorderVal,
     mainHero = new HeroObject(heroX, heroY, heroMaxHealth, heroMaxLevel);
     trader = new TraderObject(traderX, traderY);
 }
-
 MonsterObject* Level::addMonster(int x,  int y,
                        unsigned int amountOfMaxHealth,
                        unsigned int weaponDamage, WeaponTypes typeOfWeapon,
