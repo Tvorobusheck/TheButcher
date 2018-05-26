@@ -1,0 +1,17 @@
+language:
+  - cpp
+  
+before_install:
+  - pip install --user cpp-coveralls
+
+script:
+  - cd gtest/Test_TheButcher
+  - qmake
+  - make
+  - ./Test_TheButcher
+
+after_success:
+  - coveralls --root ../../ -E ".*external.*" -E ".*tests.*"
+
+notifications:
+email: false
