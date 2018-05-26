@@ -5,7 +5,7 @@ before_install:
   - pip install --user cpp-coveralls
 
 script:
-  - build.sh
+  - cd gtest/Test_TheButcher
   - qmake
   - make
   - ./Test_TheButcher
