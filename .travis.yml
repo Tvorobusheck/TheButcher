@@ -3,7 +3,7 @@ language:
 compiler:
   - clang
   - gcc
-  
+
 before_install:
   - pip install --user cpp-coveralls
 
