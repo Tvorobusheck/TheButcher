@@ -1,6 +1,7 @@
 #include "Level/level.h"
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <qqml.h>
 #include <Qt>
 
 int main(int argc, char *argv[])
@@ -11,7 +12,9 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
+
     QQmlApplicationEngine engine;
+    qmlRegisterType<Level>( "CustomComponents", 1, 0, "Level" );
     engine.load(QUrl(QStringLiteral("qrc:/TheButcher_logics.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;

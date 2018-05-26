@@ -8,14 +8,16 @@
 #include "../Characters/trader.h"
 #include <list>
 #include <math.h>
+#include <QObject>
 #define EPSILON 0.05
 #define MELEE_RADIUS 2
 #define DISTANCE_WEAPON_RADIUS 10
 #define SIGHT_RADIUS 20
 
 using namespace std;
-class Level
-{
+class Level: public QObject
+{ Q_OBJECT
+
 public:
     enum WeaponTypes{Gun, Mage, Melee};
     struct Point
@@ -164,6 +166,14 @@ public:
         Owner owner;
         unsigned int damage;
     };
+public:
+    Level( QObject* parent = 0):QObject(parent)
+    {
+
+         Level_opt(1,1,1,1,1,1,100,100,1,1);
+
+
+      }
     /*!
      * \brief Level, which is rectangle which given by two points
      * left-up and right-down
@@ -178,6 +188,16 @@ public:
      * \param traderX trader position
      * \param traderY trader position
      */
+
+    Level_opt(int leftBorder, int upperBorder,
+          int rightBorder, int lowerBorder,
+          int heroX, int heroY,
+          unsigned int heroMaxHealth, unsigned int heroMaxLevel,
+          int traderX, int traderY);
+
+
+
+
     Level(int leftBorder, int upperBorder,
           int rightBorder, int lowerBorder,
           int heroX, int heroY,
@@ -217,17 +237,17 @@ public:
      * \brief get health of hero
      * \return hero's health
      */
-    int getHeroHealth();
+    Q_INVOKABLE int getHeroHealth();
     /*!
      * \brief get gold of hero
      * \return hero's gold
      */
-    unsigned int getHeroGold();
+   Q_INVOKABLE  unsigned int getHeroGold();
     /*!
      * \brief get max health of hero
      * \return hero's max bhealth
      */
-    int getHeroMaxHealth();
+    Q_INVOKABLE int getHeroMaxHealth();
     /*!
      * \brief Move character by vectorCoordinates
      * \param character
@@ -239,7 +259,7 @@ public:
      * \brief takeHeroGold give some gold to hero
      * \param amountOfGold
      */
-    void takeHeroGold(unsigned int amountOfGold);
+    Q_INVOKABLE void takeHeroGold(unsigned int amountOfGold);
 
     /*!
      * \brief check can the hero buy new weapon

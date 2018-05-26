@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import CustomComponents 1.0
 
 Item {
 id:hero_game
@@ -32,6 +33,33 @@ anchors.topMargin:hero_y
 
 
 }
+Level{
+id: level_first
+}
+
+
+
+Rectangle {
+    id:helf1
+    y: 35
+    x: 0
+    width: level_first.getHeroMaxHealth()+10
+    height: 30
+    color: "white"
+    border.color: "black"
+    border.width: 5
+    radius: 5
+}
+Rectangle {
+    id:helf
+    color: "red"
+    y: 40
+    x: 5
+    width:  level_first.getHeroHealth()
+    height: 20
+}
+
+
 
     Timer {
         interval: 5
@@ -39,7 +67,11 @@ anchors.topMargin:hero_y
         running: true
         repeat: true
         onTriggered: {
+           //  level_first.takeHeroGold(10)
+          // console.log ( level_first.getHeroGold())
+         //   console.log ( level_first.getHeroHealth())
         if (yVelocity==1){
+
             if (hero_y<500)
                 hero_y+= yVelocity*mod_speed
             else
