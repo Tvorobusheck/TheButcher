@@ -3,8 +3,7 @@ language:
   
 before_install:
   - pip install --user cpp-coveralls
-install:
-  - sudo apt-get install qt5-base
+  - pip install --user qt5-base
 script:
   - qmake
   - make
