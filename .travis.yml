@@ -13,7 +13,7 @@ script:
   - ./Test_TheButcher/Test_TheButcher
 
 after_success:
-  - coveralls --root . -E ".*googletest.*"
+  - coveralls --root . -E ".*googletest.*" -E ".*moc_.*"
 
 notifications:
 email: false
