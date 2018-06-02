@@ -13,7 +13,7 @@ script:
   - ./Test_TheButcher/Test_TheButcher
 
 after_success:
-  - coveralls --root -E ".*external.*" -E ".*tests.*"
+  - coveralls --root . -E ".*external.*" -E ".*tests.*"
 
 notifications:
 email: false
