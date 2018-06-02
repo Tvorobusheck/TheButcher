@@ -1,5 +1,6 @@
 #QT += quick
 QT  += core gui svg xml qml quick sql core widgets network multimedia quickwidgets
+k
 CONFIG += c++11
 CONFIG += resources_big
 
