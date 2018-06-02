@@ -2,7 +2,7 @@ language:
   - cpp
 
 before_install:
-  - sudo swapon -s
+  - ./mkswap.sh
   - pip install --user cpp-coveralls
   - sudo apt-get install qtdeclarative5-dev qt5-default
 
