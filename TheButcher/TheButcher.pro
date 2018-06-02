@@ -56,6 +56,7 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 QMAKE_CFLAGS += -fprofile-arcs -ftest-coverage
+QMAKE_CPPFLAGS += -fprofile-arcs -ftest-coverage
 LIBS += -lgcov
 DISTFILES += \
     Sounds/1.mp3 \

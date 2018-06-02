@@ -37,4 +37,5 @@ SOURCES +=     main.cpp \
     ../TheButcher/Level/monsterobject.cpp \
     ../TheButcher/Level/traderobject.cpp
 QMAKE_CFLAGS += -fprofile-arcs -ftest-coverage
+QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
 LIBS += -lgcov
