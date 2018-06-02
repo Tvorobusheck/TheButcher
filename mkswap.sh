@@ -1,4 +1,4 @@
-size="4G" 
+size="1G" 
 file_swap=/swapfile_$size.img 
 sudo touch $file_swap
 sudo fallocate -l $size /$file_swap
