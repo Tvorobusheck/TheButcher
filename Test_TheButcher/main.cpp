@@ -2,7 +2,7 @@
 #include "googletest_level.h"
 #include "googletest_experience.h"
 #include "googletest_battle.h"
-
+#include "googletest_weapon.h"
 #include <gtest/gtest.h>
 
 int main(int argc, char *argv[])
