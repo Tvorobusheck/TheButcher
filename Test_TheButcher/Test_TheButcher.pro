@@ -23,7 +23,8 @@ HEADERS +=     tst_thebutchercase.h \
     googletest_level.h \
     googletest_experience.h \
     googletest_battle.h \
-    googletest_weapon.h
+    googletest_weapon.h \
+    googletest_character.h
 
 SOURCES +=     main.cpp \
     ../TheButcher/Characters/character.cpp \
