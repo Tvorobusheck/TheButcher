@@ -153,3 +153,12 @@ TEST(TheButcherCasePotion, TheButcherSet_CheckBuyAndUse)
     else
          SUCCEED();
 }
+
+TEST(Hero, Health)
+{
+
+    Level *a = new Level{1,1,1,1,1,1,100,1,1,1};
+
+ ASSERT_EQ(a->getHeroHealth(), 100);
+  ASSERT_EQ(a->getHeroMaxHealth(), 100);
+}
