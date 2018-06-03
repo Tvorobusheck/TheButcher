@@ -1,6 +1,6 @@
 #ifndef WEAPON_H
 #define WEAPON_H
-#include <gtest/gtest_prod.h>
+//#include <gtest/gtest_prod.h>
 class Weapon
 {
 public:
@@ -15,8 +15,8 @@ public:
 private:
     unsigned int damage;
     TypeOfWeapon type;
-    FRIEND_TEST(WeaponCase, WeaponTypeGetSet);
-    FRIEND_TEST(WeaponCase, WeaponDamageGetSet);
+  //  FRIEND_TEST(WeaponCase, WeaponTypeGetSet);
+   // FRIEND_TEST(WeaponCase, WeaponDamageGetSet);
     /* Setting stats */
     void setDamage(unsigned int amountOfDamage);
     void setType(TypeOfWeapon typeOfWeapon);

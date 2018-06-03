@@ -19,7 +19,7 @@ TEST(WeaponCase, WeaponConstructor)
         SUCCEED();
 }
 
-
+/*
 TEST(WeaponCase, WeaponDamageGetSet)
 {
     Weapon *wp = new Weapon(0, Weapon::TypeOfWeapon::Melee);
@@ -33,5 +33,5 @@ TEST(WeaponCase, WeaponTypeGetSet)
     const Weapon::TypeOfWeapon someType = Weapon::TypeOfWeapon::Gun;
     wp -> setType(someType);
     ASSERT_EQ(someType, wp -> getWeaponType());
-}
+}*/
 #endif // GOOGLETEST_WEAPON_H
