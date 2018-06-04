@@ -10,7 +10,7 @@
 
 using namespace std;
 
-TEST(TraderCase, TraderGetDamageAndDie){
+TEST(TraderCase, TraderGetOverDamageAndStillAlive){
     Trader *tr = new Trader();
     if(tr -> takeDamage(tr -> getCurHealth() + 1))
         SUCCEED();

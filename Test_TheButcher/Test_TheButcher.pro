@@ -25,7 +25,8 @@ HEADERS +=     tst_thebutchercase.h \
     googletest_battle.h \
     googletest_weapon.h \
     googletest_character.h \
-    googletest_trader.h
+    googletest_trader.h \
+    googletest_hero.h
 
 SOURCES +=     main.cpp \
     ../TheButcher/Characters/character.cpp \

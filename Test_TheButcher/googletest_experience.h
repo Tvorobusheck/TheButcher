@@ -40,4 +40,13 @@ TEST(Experience, ExperienceLevelOverflow)
     SUCCEED();
 }
 
+TEST(Experience, ExperienceExperienceOverflow)
+{
+    Experience *exp = new Experience(30, 100, 1.25, 0);
+    for(unsigned int i = 0; i < exp -> getMaxLevel() + 3; i++)
+        exp -> takeExp(exp -> getThreshold());
+    ASSERT_EQ(exp -> getCurrentLevel(), exp -> getMaxLevel());
+    SUCCEED();
+}
+
 #endif // GOOGLETEST_EXPERIENCE_H

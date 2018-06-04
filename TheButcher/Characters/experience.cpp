@@ -28,7 +28,7 @@ double Experience::getThresholdCoefficient(){
 }
 void Experience::setExp(unsigned int amountOfExp){
     exp = amountOfExp;
-    while(exp >= getThreshold())
+    while(exp >= getThreshold() && getCurrentLevel() < getMaxLevel())
         incLevel();
 }
 void Experience::setCurrentLevel(unsigned int amountOfLevels){
