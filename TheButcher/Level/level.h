@@ -153,8 +153,7 @@ public:
 * \return true if in epsilon radius
 */
         bool checkColision(Point pos){
-            return (fabs(A * pos.x + B * pos.y + C) <= EPSILON &&
-                    fabs(pos.x - x) <= EPSILON && fabs(pos.y - y) <= EPSILON);
+            return (sqrt((pos.x - x) * (pos.x - x) + (pos.y - y) * (pos.y - y)) <= EPSILON);
         }
     private:
         FRIEND_TEST(ShotCase, CheckMonsterShotMove);

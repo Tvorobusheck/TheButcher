@@ -94,4 +94,26 @@ TEST(ShotCase, CheckMonsterShotMove){
     else
         FAIL();
 }
+TEST(ShotCase, CheckColisionPositive){
+
+    Level *lev = new Level(0, 100, 100, 0,
+                           50, 50, 100, 30,
+                           0, 0);
+    Level::Shot *a = new Level::Shot(lev, Level::Point{51, 51});
+    if(a -> checkColision(Level::Point{50, 50}))
+        SUCCEED();
+    else
+        FAIL();
+}
+TEST(ShotCase, CheckColisionNegative){
+
+    Level *lev = new Level(0, 100, 100, 0,
+                           50, 50, 100, 30,
+                           0, 0);
+    Level::Shot *a = new Level::Shot(lev, Level::Point{51, 51});
+    if(a -> checkColision(Level::Point{51, 51}))
+        FAIL();
+    else
+        SUCCEED();
+}
 #endif // GOOGLETEST_SHOTS_H
