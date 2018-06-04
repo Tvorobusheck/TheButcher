@@ -152,6 +152,10 @@ TEST(TheButcherCasePotion, TheButcherSet_CheckBuyAndUse)
          FAIL();
     else
          SUCCEED();
+   if(a->heroAbilityToBuyWeapon()!=1)
+       FAIL();
+  else
+       SUCCEED();;
 }
 
 TEST(Hero, Health)
@@ -162,3 +166,11 @@ TEST(Hero, Health)
  ASSERT_EQ(a->getHeroHealth(), 100);
   ASSERT_EQ(a->getHeroMaxHealth(), 100);
 }
+
+/*TEST(Hero, Pos)
+{
+
+    Level *a = new Level{1,1,1,1,1,1,100,1,1,1};
+
+    //a->takeMove(,Level::Point{1,1});
+}*/
