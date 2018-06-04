@@ -4,6 +4,7 @@
 #include "googletest_battle.h"
 #include "googletest_weapon.h"
 #include "googletest_character.h"
+#include "googletest_trader.h"
 #include <gtest/gtest.h>
 
 int main(int argc, char *argv[])

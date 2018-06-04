@@ -20,6 +20,7 @@ public:
          */
         virtual bool takeDamage(unsigned int amountOfDamage);
         void takeHealth(unsigned int amountOfHeal);
+        void setWeapon(Weapon* weapon);
 
         /*Character has died */
         void killCharacter();
@@ -32,7 +33,6 @@ protected:
         /*Setting*/
         void setCurHealth(int amountOfCurHealth);
         void setMaxHealth(unsigned int amountOfMaxHealth);
-        void setWeapon(Weapon* weapon);
 };
 
 #endif // CHARACTER_H

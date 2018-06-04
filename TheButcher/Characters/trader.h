@@ -15,7 +15,7 @@ public:
     bool abilityToPayPotion(Hero *hero);
 
     unsigned int getDamgeOfNewWeapon(Hero *hero);
-    Weapon* heroBuysWeapon(Hero *hero, Weapon::TypeOfWeapon type);
+    void heroBuysWeapon(Hero *hero, Weapon::TypeOfWeapon type);
     void heroBuysPotion(Hero *hero);
     /*
      * always return true, because traders never die!
