@@ -51,6 +51,8 @@ HEADERS += \
     Level/monsterobject.h \
     Level/level.h
 
+INCLUDEPATH += ../googletest/googletest/include
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
