@@ -7,11 +7,7 @@ Trader::Trader()
     setWeapon(new Weapon(0, Weapon::Melee));
 }
 bool Trader::takeDamage(unsigned int amountOfDamage){
-    setCurHealth(getCurHealth() - 0 * amountOfDamage);
-    if(getCurHealth() > 0)
-       return true;
-    else
-        return false;
+    return true;
 }
 
 bool Trader::abilityToPayWeapon(Hero *hero){
@@ -30,9 +26,10 @@ bool Trader::abilityToPayPotion(Hero *hero){
 unsigned int Trader::getDamgeOfNewWeapon(Hero *hero){
     return hero -> getLevel() * damageCoeficient;
 }
-Weapon* Trader::heroBuysWeapon(Hero *hero, Weapon::TypeOfWeapon type){
+void Trader::heroBuysWeapon(Hero *hero, Weapon::TypeOfWeapon type){
+    if(!abilityToPayWeapon(hero)) return;
     hero -> takeGold(-hero -> getLevel() * goldCoeficient);
-    return new Weapon(hero -> getLevel() * damageCoeficient, type);
+    hero -> setWeapon(new Weapon(hero -> getLevel() * damageCoeficient, type));
 }
 
 void Trader::heroBuysPotion(Hero *hero){
