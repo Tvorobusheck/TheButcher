@@ -6,6 +6,8 @@
 #include "googletest_character.h"
 #include "googletest_trader.h"
 #include "googletest_hero.h"
+#include "googletest_mapobject.h"
+#include "googletest_monster.h"
 #include <gtest/gtest.h>
 
 int main(int argc, char *argv[])

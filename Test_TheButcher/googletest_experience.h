@@ -1,11 +1,11 @@
+#ifndef GOOGLETEST_EXPERIENCE_H
+#define GOOGLETEST_EXPERIENCE_H
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
 #include <stdio.h>
 #include <iostream>
 #include "../TheButcher/Level/level.h"
 using namespace std;
-#ifndef GOOGLETEST_EXPERIENCE_H
-#define GOOGLETEST_EXPERIENCE_H
 
 TEST(Experience, ExperienceCreating)
 {

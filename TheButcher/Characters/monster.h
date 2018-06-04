@@ -1,6 +1,7 @@
 #ifndef MONSTER_H
 #define MONSTER_H
 #include "character.h"
+#include <gtest/gtest_prod.h>
 
 class Monster : public Character
 {
@@ -17,7 +18,8 @@ private:
     /* Expirience drop */
     unsigned int expDrop;
     unsigned int goldDrop;
-
+    FRIEND_TEST(MonsterCase, CheckSetExpDrop);
+    FRIEND_TEST(MonsterCase, CheckSetGoldDrop);
     void setGoldDrop(unsigned int amountOfGold);
     void setExpDrop(unsigned int amountOfExp);
 
