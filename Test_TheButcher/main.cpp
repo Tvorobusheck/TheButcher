@@ -8,6 +8,7 @@
 #include "googletest_hero.h"
 #include "googletest_mapobject.h"
 #include "googletest_monster.h"
+#include "googletest_shots.h"
 #include <gtest/gtest.h>
 
 int main(int argc, char *argv[])
