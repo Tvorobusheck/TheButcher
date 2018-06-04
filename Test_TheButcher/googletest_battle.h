@@ -35,6 +35,7 @@ TEST(Monster, monsterAtack)
         a->monsterAttaksHero(i);
         a->combatMonstersAtackHero();
     }
+     a->heroAtacksMonster(Level::Point{1,1});
          list <MonsterObject*> monsterattack = a->getListOfAttackingMonsters();
           ASSERT_EQ(monsterattack.size(), 2);
       list <MonsterObject*> nonmonsterattack =a->getListOfNonAttackingMonsters();
