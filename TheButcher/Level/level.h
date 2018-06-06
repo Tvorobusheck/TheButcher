@@ -363,7 +363,8 @@ private:
     TraderObject* trader;
     list <MonsterObject*> monsters;
     list <Shot*> shots;
-
+    FRIEND_TEST(Shots, TakeShots);
+    FRIEND_TEST(Shots, TakeMoveShots);
     /*!
 * \brief add shot
 * \param shot

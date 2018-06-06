@@ -313,9 +313,9 @@ void Level::takeShots(){
                 getMainHeroObject() -> getHeroState() -> takeDamage(it -> getDamage());
                 shots.remove(it);
                 delete [] it;
+                return;
             }
-            else
-                it -> takeMove(this);
+            it -> takeMove(this);
         }
         else{
             for(auto curMonster: monsters){
@@ -324,15 +324,13 @@ void Level::takeShots(){
                         heroGetsMonsterDrop(curMonster);
                     shots.remove(it);
                     delete [] it;
-                    break;
+                    return;
                 }
-                else
-                    it -> takeMove(this);
             }
+            it -> takeMove(this);
         }
-        if(checkBorder(it -> getPos())){
+        if(!checkBorder(it -> getPos())){
             shots.remove(it);
-            delete [] it;
         }
     }
 }

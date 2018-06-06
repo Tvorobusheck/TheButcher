@@ -236,3 +236,49 @@ TEST(Monsters, CombatMonstersAttackHeroGun){
     a -> combatMonstersAtackHero();
     ASSERT_EQ(a -> getListOfShots().size(), 1);
 }
+TEST(Shots, TakeMoveShots){
+    Level *a = new Level(0, 100, 100, 0, 50, 50, 50, 30, 10, 10);
+    Level::Shot * sh = new Level::Shot(a, Level::Point{1, 1});
+
+    a -> addShot(sh);
+    sh -> takeMove(a);
+    if(!(sh -> getPos() == Level::Point{50, 50}))
+        FAIL();
+    sh -> takeMove(a);
+    if(!(sh -> getPos() == Level::Point{51, 51}))
+        FAIL();
+    SUCCEED();
+}
+
+TEST(Shots, TakeShots){
+    Level *a = new Level(0, 100, 100, 0, 50, 50, 50, 30, 10, 10);
+    Level::Shot * sh = new Level::Shot(a, Level::Point{1, 1});
+
+    a -> addShot(sh);
+    a -> takeShots();
+    a -> takeShots();
+    if(!(sh -> getPos() == Level::Point{51, 51}))
+        FAIL();
+    SUCCEED();
+
+}
+
+TEST(Shots, TakeMonsterShots){
+    Level *a = new Level(0, 100, 100, 0, 50, 50, 50, 30, 10, 10);
+    a -> addMonster(51, 51, 1000, 10, Level::Gun, 0, 0);
+    a -> checkArea(40);
+    a -> combatMonstersAtackHero();
+    a -> takeShots();
+    a -> takeShots();
+    ASSERT_EQ(a -> getHeroHealth(), a -> getHeroMaxHealth());
+}
+
+TEST(Shots, PlayGame){
+    Level *a = new Level(0, 100, 100, 0, 50, 50, 50, 30, 10, 10);
+    a -> addMonster(51, 51, 1000, 10, Level::Gun, 0, 0);
+    a -> playGame(3, 2, 3);
+    ASSERT_EQ(a -> getListOfShots().size(), 1);
+    a -> playGame(4, 2, 3);
+    a -> playGame(6, 2, 3);
+    ASSERT_EQ(a -> getHeroHealth(), a -> getHeroMaxHealth());
+}
