@@ -9,6 +9,7 @@ Rectangle {
     signal author
     signal gameStarted
     signal settings
+    signal deadhero
 
 
     Image {

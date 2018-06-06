@@ -243,6 +243,11 @@ traderY trader position
 */
     Q_INVOKABLE unsigned int getHeroGold();
     /*!
+* \brief Hero get damage
+* \param dmg
+*/
+Q_INVOKABLE void heroTakeDamage(unsigned int dmg);
+    /*!
 * \brief get max health of hero
 * \return hero's max bhealth
 */

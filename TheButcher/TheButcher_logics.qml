@@ -14,6 +14,7 @@ Window {
             onGameStarted: parent.state = "gameplay"
             onAuthor: parent.state = "author"
             onSettings: parent.state = "settings"
+            onDeadhero: parent.state = "deadhero"
         }
 
         Author {
@@ -23,11 +24,24 @@ Window {
         GamePlay {
             id: gameplay
             onGameStopped: parent.state = "menu"
+              onDeadhero: parent.state = "deadhero"
         }
         Settings {
             id: settings
            onGameStopped: parent.state = "menu"
         }
+        DeadHero{
+        id: deadhero
+
+        }
+     /*  Actor {
+        id: h
+        onDeadhero: parent.state = "menu"
+        }*/
+      /* DeadHero {
+        id: deadhero
+        onGameStopped: parent.state = "menu"
+        }*/
 
         states: [
             State {
@@ -49,6 +63,10 @@ Window {
                     target: settings
                     visible: false
                 }
+                PropertyChanges {
+                    target: deadhero
+                    visible: false
+                }
             },
             State {
                 name: "author"
@@ -67,6 +85,10 @@ Window {
                 }
                 PropertyChanges {
                     target: settings
+                    visible: false
+                }
+                PropertyChanges {
+                    target: deadhero
                     visible: false
                 }
 
@@ -90,10 +112,14 @@ Window {
                     target: settings
                     visible: false
                 }
+                PropertyChanges {
+                    target: deadhero
+                    visible: false
+                }
 
             },
             State {
-                name: "author"
+                name: "settings"
                 PropertyChanges {
                     target: menu
                     visible: false
@@ -111,7 +137,35 @@ Window {
                     target: settings
                     visible: true
                 }
+                PropertyChanges {
+                    target: deadhero
+                    visible: false
+                }
 
+            },
+            State {
+                name: "deadhero"
+                PropertyChanges {
+                    target: menu
+                    visible: false
+                }
+                PropertyChanges {
+                    target: author
+                    visible: false
+                }
+
+                PropertyChanges {
+                    target: gameplay
+                    visible: false
+                }
+                PropertyChanges {
+                    target: settings
+                    visible: false
+                }
+                PropertyChanges {
+                    target: deadhero
+                    visible: true
+                }
             }
         ]
 
@@ -121,4 +175,5 @@ Window {
 
     //Component.onCompleted: console.log("ksjksdhfkjs")
 }
+
 

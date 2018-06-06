@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Qt.labs.settings 1.0
 import QtQuick.Window 2.0
 import QtMultimedia 5.5
+import CustomComponents 1.0
 
 Rectangle {
      id:gameplay
@@ -9,6 +10,7 @@ Rectangle {
     height: 600
 
     signal gameStopped
+    signal deadhero
 
      property int speed: settings.speed
      property int hero_x: 400
@@ -22,9 +24,11 @@ Rectangle {
      property int fon_wedth:3070
 
 Actor{
+
     focus:true
 
     Keys.onPressed: {
+
         if (event.isAutoRepeat) {
             return;
         }

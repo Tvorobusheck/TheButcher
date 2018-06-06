@@ -13,7 +13,12 @@ Rectangle {
     property int hero_x: settings.hero_x
     property int hero_y: settings.hero_y
     property int mod_speed:4
-
+    Image {
+        id: sett
+        source: "Image/settings.png"
+        width: 800
+        height: 600
+    }
 
     Settings {
         id: settings
@@ -33,11 +38,11 @@ Rectangle {
         anchors.verticalCenterOffset: parent.height / 4
         spacing: 5
         Text{
-        text:qsTr("Текущии настройки")
+       // text:qsTr("Текущии настройки")
         }
 
         Text{
-        text:qsTr("Модификатор скорости:" + mod_speed)
+       // text:qsTr("Модификатор скорости:" + mod_speed)
         }
         Button {
 

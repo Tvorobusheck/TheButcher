@@ -6,6 +6,9 @@ id:hero_game
 property int xVelocity: 0
 property int yVelocity: 0
 
+//signal deadhero
+
+
 Image {
 id: back
 source: "Image/map.jpg"
@@ -18,6 +21,7 @@ anchors.leftMargin: fon_x
 anchors.topMargin:fon_y
 
 }
+
 Image{
 
 id:hero
@@ -32,6 +36,7 @@ anchors.leftMargin: hero_x
 anchors.topMargin:hero_y
 
 }
+
 Level{
 id: level_first
 }
@@ -62,9 +67,8 @@ triggeredOnStart: true
 running: true
 repeat: true
 onTriggered: {
-// level_first.takeHeroGold(10)
-// console.log ( level_first.getHeroGold())
-// console.log ( level_first.getHeroHealth())
+
+
 if (yVelocity==1){
 
 if (hero_y<500)
@@ -73,6 +77,9 @@ else
 {
 if (fon_y- (yVelocity*mod_speed)>(-fon_height+600))
 fon_y-= yVelocity*mod_speed
+else
+    level_first.heroTakeDamage(1)
+
 }
 }
 else{
@@ -81,6 +88,9 @@ hero_y+= yVelocity*mod_speed
 else{
 if (fon_y- (yVelocity*mod_speed)<0)
 fon_y-= yVelocity*mod_speed
+else
+    level_first.heroTakeDamage(1)
+
 }
 }
 
@@ -90,6 +100,9 @@ hero_x+= xVelocity*mod_speed
 else
 if (fon_x- (xVelocity*mod_speed)>(-fon_wedth+800))
 fon_x-= xVelocity*mod_speed
+else
+    level_first.heroTakeDamage(1)
+
 
 }
 else{
@@ -98,9 +111,19 @@ hero_x+= xVelocity*mod_speed
 else{
 if (fon_x- (xVelocity*mod_speed)<0)
 fon_x-= xVelocity*mod_speed
+else
+    level_first.heroTakeDamage(1)
+
 }
 }
+helf.width=level_first.getHeroHealth()
+helf1.update()
 back.update()
+if(level_first.getHeroHealth()<0){
+menu.deadhero()
+
+}
+
 }
 }
 }

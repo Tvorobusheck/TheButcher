@@ -17,5 +17,8 @@
         <file>Image/map.jpg</file>
         <file>Sounds/1.mp3</file>
         <file>Sounds/2.mp3</file>
+        <file>DeadHero.qml</file>
+        <file>Image/dead.png</file>
+        <file>Image/settings.png</file>
     </qresource>
 </RCC>

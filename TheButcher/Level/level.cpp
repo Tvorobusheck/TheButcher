@@ -69,6 +69,10 @@ void Level::takeMove(MapObject* character, Level::Point
 int Level::getAmountOfMonsters(){
     return monsters.size();
 }
+void Level::heroTakeDamage(unsigned int dmg){
+
+mainHero -> getHeroState() -> takeDamage(dmg);
+}
 bool Level::heroAbilityToBuyWeapon(){
     return trader -> getTrader() -> abilityToPayWeapon(mainHero ->
                                                        getHeroState());

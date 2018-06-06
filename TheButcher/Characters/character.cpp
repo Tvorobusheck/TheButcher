@@ -30,7 +30,7 @@ void Character::setWeapon(Weapon* newWeapon){
 bool Character::takeDamage(unsigned int amountOfDamage){
     setCurHealth(getCurHealth() - amountOfDamage);
     if(getCurHealth() <= 0){
-        killCharacter();
+      //  killCharacter();
         return false;
     }
     return true;
