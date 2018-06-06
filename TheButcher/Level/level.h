@@ -353,6 +353,7 @@ Q_INVOKABLE void heroTakeDamage(unsigned int dmg);
                   unsigned int shotTime, unsigned int monsterTime);
 
 private:
+    FRIEND_TEST(Signum, SignumTest);
     static double signum(double val);
     static int signum(int val);
     void heroGetsMonsterDrop(MonsterObject* monster);
