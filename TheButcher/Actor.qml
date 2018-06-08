@@ -25,7 +25,7 @@ anchors.topMargin:fon_y
 Image{
 
 id:hero
-source: "Image/hero.jpg"
+source: "Image/hero.png"
 width: 40
 height: 40
 focus:true

@@ -12,7 +12,6 @@
         <file>Image/fon.jpg</file>
         <file>Image/fon1.jpg</file>
         <file>Image/fon_for_menu.png</file>
-        <file>Image/hero.jpg</file>
         <file>Image/hero_spr.png</file>
         <file>Image/map.jpg</file>
         <file>Sounds/1.mp3</file>
@@ -20,5 +19,6 @@
         <file>DeadHero.qml</file>
         <file>Image/dead.png</file>
         <file>Image/settings.png</file>
+        <file>Image/hero.png</file>
     </qresource>
 </RCC>
